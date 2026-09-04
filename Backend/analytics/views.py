@@ -27,7 +27,7 @@ class CoordinatorAnalyticsView(APIView):
         students_count = students.count()
         companies_count = companies.count()
         verified_companies = companies.filter(verificationStatus='VERIFIED').count()
-        pending_verification = companies.filter(verificationStatus='PENDING_VERIFICATION').count()
+        pending_verification = companies.filter(verificationStatus__in=['PENDING', 'REGISTERED']).count()
         active_opportunities = opportunities.filter(status=Opportunity.Status.PUBLISHED).count()
         applications_count = applications.count()
         pending_applications = applications.filter(status__in=[
